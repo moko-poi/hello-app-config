@@ -19,6 +19,6 @@ spec:
     spec:
       containers:
       - name: hello-app
-        image: ghcr.io/<あなたのGitHubアカウント名>/hello-app:v0.0.1
+        image: ghcr.io/moko-poi/hello-app:v0.0.1
         ports:
         - containerPort: 8080
