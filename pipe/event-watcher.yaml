@@ -1,0 +1,12 @@
+apiVersion: pipecd.dev/v1beta1
+kind: EventWatcher
+spec:
+  events:
+    - name: dev-image-update
+      replacements:
+        - file: dev/deployment.yaml
+          yamlField: $.spec.template.spec.containers[0].image
+    - name: prod-image-update
+      replacements:
+        - file: prod/deployment.yaml
+          yamlField: $.spec.template.spec.containers[0].image
