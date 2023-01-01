@@ -19,6 +19,6 @@ spec:
     spec:
       containers:
       - name: hello-app
-        image: ghcr.io/moko-poi/hello-app:v0.0.2
+        image: ghcr.io/moko-poi/hello-app:v0.0.4
         ports:
         - containerPort: 8080
