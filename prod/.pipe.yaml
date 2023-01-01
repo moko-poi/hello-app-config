@@ -7,5 +7,20 @@ spec:
       - service.yaml
   pipeline:
     stages:
-      - name: WAIT_APPROVAL
+      - name: K8S_CANARY_ROLLOUT
+        with:
+          replicas: 20%
+      - name: ANALYSIS
+        with:
+          duration: 1m
+          metrics:
+            - provider: prometheus
+              interval: 30s
+              expected:
+                max: 0.05
+              query: |
+                sum(rate(http_requests_total{code=~"5.*"}[30s])) or vector(0)
+                /
+                sum(rate(http_requests_total{}[30s]))
       - name: K8S_PRIMARY_ROLLOUT
+      - name: K8S_CANARY_CLEAN
